@@ -2,6 +2,8 @@ package mvp.sample.biocram.samplemvp.countries;
 
 import android.support.annotation.NonNull;
 
+import com.google.common.base.Preconditions;
+
 import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
@@ -9,6 +11,15 @@ import mvp.sample.biocram.samplemvp.data.Country;
  */
 
 public class CountriesPresenter implements CountriesContract.Presenter {
+
+    private final CountriesContract.View mView;
+
+    public CountriesPresenter(@NonNull CountriesContract.View view) {
+        mView = Preconditions.checkNotNull(view, "countriesView can't be null!");
+
+        mView.setPresenter(this);
+    }
+
     @Override
     public void start() {
 
