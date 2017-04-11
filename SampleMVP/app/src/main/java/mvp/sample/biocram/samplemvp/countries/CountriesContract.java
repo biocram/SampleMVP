@@ -20,9 +20,9 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import data.Country;
 import mvp.sample.biocram.samplemvp.BasePresenter;
 import mvp.sample.biocram.samplemvp.BaseView;
+import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
  * This specifies the contract between the view and the presenter.
@@ -37,7 +37,7 @@ public interface CountriesContract {
 
         void showCountryDetailsUi(String countryId);
 
-        void showLoadingCountryError();
+        void showLoadingCountriesError();
 
         void showNoCountries();
     }

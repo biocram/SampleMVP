@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 
 import java.util.List;
 
-import data.Country;
+import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
  * Created by biocram on 2017-04-11.
@@ -33,7 +33,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     }
 
     @Override
-    public void showLoadingCountryError() {
+    public void showLoadingCountriesError() {
 
     }
 

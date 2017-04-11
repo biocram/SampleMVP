@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package data;
+package mvp.sample.biocram.samplemvp.data;
 
 public final class Country {
 

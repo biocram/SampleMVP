@@ -2,7 +2,7 @@ package mvp.sample.biocram.samplemvp.countries;
 
 import android.support.annotation.NonNull;
 
-import data.Country;
+import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
  * Created by biocram on 2017-04-11.
