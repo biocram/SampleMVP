@@ -1,11 +1,17 @@
 package mvp.sample.biocram.samplemvp.countries;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.common.base.Preconditions;
 
 import java.util.List;
 
+import mvp.sample.biocram.samplemvp.R;
 import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
@@ -15,9 +21,35 @@ import mvp.sample.biocram.samplemvp.data.Country;
 public class CountriesFragment extends Fragment implements CountriesContract.View {
 
     private CountriesContract.Presenter mPresenter;
+    private ICountries mActivity;
 
     public static CountriesFragment newInstance() {
         return new CountriesFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.countries_fragment_layout, container, false);
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Preconditions.checkArgument(getActivity() instanceof ICountries, "Activity must implement ICountries interface");
+        mActivity = (ICountries) getActivity();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 
     @Override
@@ -37,7 +69,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @Override
     public void showCountryDetailsUi(String countryId) {
-
+        mActivity.showCountryDetail(countryId);
     }
 
     @Override
@@ -48,5 +80,10 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     @Override
     public void showNoCountries() {
 
+    }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
     }
 }

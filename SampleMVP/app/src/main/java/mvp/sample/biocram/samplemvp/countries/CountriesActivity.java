@@ -1,17 +1,19 @@
 package mvp.sample.biocram.samplemvp.countries;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import mvp.sample.biocram.samplemvp.R;
+import mvp.sample.biocram.samplemvp.countrydetail.CountryDetailActivity;
 import mvp.sample.biocram.samplemvp.utils.ActivityUtils;
 
 /**
  * Created by biocram on 2017-04-11.
  */
 
-public class CountriesActivity extends AppCompatActivity {
+public class CountriesActivity extends AppCompatActivity implements ICountries{
 
     private CountriesPresenter mPresenter;
 
@@ -40,5 +42,13 @@ public class CountriesActivity extends AppCompatActivity {
 
     private void setUpPresenter(CountriesContract.View view) {
         mPresenter = new CountriesPresenter(view);
+    }
+
+    @Override
+    public void showCountryDetail(String countryID) {
+        // TODO: 2017-04-12 decide to launch a new activity or use a new fragment, based on tablet or phone version
+        // for now just launc a new activity
+        Intent intent = CountryDetailActivity.createIntent(this, countryID);
+        startActivity(intent);
     }
 }

@@ -40,6 +40,8 @@ public interface CountriesContract {
         void showLoadingCountriesError();
 
         void showNoCountries();
+
+        boolean isActive();
     }
 
     interface Presenter extends BasePresenter {

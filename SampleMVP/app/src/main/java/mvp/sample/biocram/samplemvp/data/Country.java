@@ -18,4 +18,9 @@ package mvp.sample.biocram.samplemvp.data;
 
 public final class Country {
 
+    private String id;
+
+    public String getId() {
+        return id;
+    }
 }
