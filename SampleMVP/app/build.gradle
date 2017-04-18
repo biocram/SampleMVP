@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
         applicationId "mvp.sample.biocram.samplemvp"
         minSdkVersion 15
@@ -10,7 +12,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        jackOptions {
+            enabled true
+        }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         def BASE_URL = "BASE_URL"
         debug {
@@ -47,6 +58,7 @@ dependencies {
 
     // retrofit
     compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGsonVersion"
 
     // okhttp3: logging-interceptor
