@@ -16,8 +16,6 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level;
 
 public final class API {
 
-
-    private static final Retrofit restAdapter;
     private static final CountriesService service;
 
     static {
@@ -32,7 +30,7 @@ public final class API {
                 .build();
 
         // create the rest adapter
-        restAdapter = new Retrofit.Builder()
+        Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,10 +40,6 @@ public final class API {
     }
 
     private API() {
-    }
-
-    public static Retrofit retrofit() {
-        return restAdapter;
     }
 
     public static CountriesService getService() {

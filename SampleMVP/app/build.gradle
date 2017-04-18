@@ -29,6 +29,12 @@ android {
 }
 
 def supportLibraryVersion = "25.3.1"
+def guavaVersion = "21.0"
+def retrofit2Version = "2.2.0"
+def retrofit2ConverterGsonVersion = "2.0.1"
+def okhttp3LoggingInterceptorVersion = "3.4.1"
+def rxandroidVersion = "2.0.1"
+def rxjavaVersion = "2.0.1"
 
 dependencies {
     // support library dependencies
@@ -37,14 +43,18 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
 
     // guava
-    compile "com.google.guava:guava:21.0"
+    compile "com.google.guava:guava:$guavaVersion"
 
     // retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGsonVersion"
 
     // okhttp3: logging-interceptor
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptorVersion"
+
+    //RxJava
+    compile "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    compile "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

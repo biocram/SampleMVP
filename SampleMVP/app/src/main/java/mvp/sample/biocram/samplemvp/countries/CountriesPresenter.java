@@ -1,30 +1,39 @@
 package mvp.sample.biocram.samplemvp.countries;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.common.base.Preconditions;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import mvp.sample.biocram.samplemvp.data.API;
 import mvp.sample.biocram.samplemvp.data.Country;
 
 /**
  * Created by biocram on 2017-04-11.
  */
 
-public class CountriesPresenter implements CountriesContract.Presenter {
+class CountriesPresenter implements CountriesContract.Presenter {
+
+    private final static String TAG = CountriesPresenter.class.getSimpleName();
 
     private final CountriesContract.View mView;
 
-    public CountriesPresenter(@NonNull CountriesContract.View view) {
+    private Disposable mDisposable;
+
+    CountriesPresenter(@NonNull CountriesContract.View view) {
         mView = Preconditions.checkNotNull(view, "countriesView can't be null!");
 
         mView.setPresenter(this);
     }
 
     @Override
-    public void start() {
+    public void subscribe() {
         loadCountries(true);
     }
 
@@ -34,20 +43,38 @@ public class CountriesPresenter implements CountriesContract.Presenter {
         mView.setLoadingIndicator(true);
 
         if (forceUpdate) {
-            // refresh countriesToShow
+            // clear previous subscription
+            if (mDisposable != null && !mDisposable.isDisposed())
+                mDisposable.dispose();
+
+            Disposable disposable = API.getService().getAllCountries()
+                    .observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableObserver<List<Country>>() {
+                        @Override
+                        public void onNext(List<Country> countries) {
+                            // The view may not be able to handle UI updates anymore
+                            if (!mView.isActive()) {
+                                Log.d(TAG, "View is not active, don't send data to it");
+                                return;
+                            }
+
+                            processCountries(countries);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e(TAG, "Error retrieving list of countries", e);
+                            mView.setLoadingIndicator(false);
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            mView.setLoadingIndicator(false);
+                        }
+                    });
+
+            mDisposable = disposable;
         }
-
-        // fake data
-        List<Country> countriesToShow = new ArrayList<>();
-
-        // The view may not be able to handle UI updates anymore
-        if (!mView.isActive()) {
-            return;
-        }
-        mView.setLoadingIndicator(false);
-
-        processCountries(countriesToShow);
-
     }
 
     private void processCountries(List<Country> countries) {
@@ -64,5 +91,11 @@ public class CountriesPresenter implements CountriesContract.Presenter {
     public void openCountryDetails(@NonNull Country requestedCountry) {
         Preconditions.checkNotNull(requestedCountry, "countryDetail can't be null!");
         mView.showCountryDetailsUi(requestedCountry.getId());
+    }
+
+    @Override
+    public void unsubscribe() {
+        if (mDisposable != null && !mDisposable.isDisposed())
+            mDisposable.dispose();
     }
 }
