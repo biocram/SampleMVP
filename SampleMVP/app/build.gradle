@@ -46,6 +46,7 @@ def retrofit2ConverterGsonVersion = "2.0.1"
 def okhttp3LoggingInterceptorVersion = "3.4.1"
 def rxandroidVersion = "2.0.1"
 def rxjavaVersion = "2.0.1"
+def gsonVersion = "2.8.0"
 
 dependencies {
     // support library dependencies
@@ -60,6 +61,9 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofit2Version"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGsonVersion"
+
+    // gson
+    compile "com.google.code.gson:gson:$gsonVersion"
 
     // okhttp3: logging-interceptor
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptorVersion"
