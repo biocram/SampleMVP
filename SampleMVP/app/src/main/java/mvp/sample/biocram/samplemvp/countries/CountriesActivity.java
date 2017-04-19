@@ -13,9 +13,7 @@ import mvp.sample.biocram.samplemvp.utils.ActivityUtils;
  * Created by biocram on 2017-04-11.
  */
 
-public class CountriesActivity extends AppCompatActivity implements ICountries{
-
-    private CountriesPresenter mPresenter;
+public class CountriesActivity extends AppCompatActivity implements ICountries {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class CountriesActivity extends AppCompatActivity implements ICountries{
     }
 
     private void setUpPresenter(CountriesContract.View view) {
-        mPresenter = new CountriesPresenter(view);
+        new CountriesPresenter(view);
     }
 
     @Override
