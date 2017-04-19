@@ -47,6 +47,7 @@ def okhttp3LoggingInterceptorVersion = "3.4.1"
 def rxandroidVersion = "2.0.1"
 def rxjavaVersion = "2.0.1"
 def gsonVersion = "2.8.0"
+def butterknifeVersion = "8.5.1"
 
 dependencies {
     // support library dependencies
@@ -71,6 +72,10 @@ dependencies {
     //RxJava
     compile "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+
+    //ButterKnife
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
