@@ -74,8 +74,8 @@ public class CountryListItemView extends LinearLayout {
 
     private void initUI() {
         mTextViewName.setText(mCountry.name);
-        mTextViewCapital.setText(mCountry.capital);
-        mTextViewNativeName.setText(mCountry.nativeName);
+        mTextViewCapital.setText(String.format(getContext().getString(R.string.capital), mCountry.capital));
+        mTextViewNativeName.setText(String.format(getContext().getString(R.string.native_name), mCountry.nativeName));
         SvgRequestBuilder.getSVGRequestBuilder(getContext())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 // SVG cannot be serialized so it's not worth to cache it

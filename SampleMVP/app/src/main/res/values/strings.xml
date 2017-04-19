@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SampleMVP</string>
+    <string name="capital">Capital: %s</string>
+    <string name="native_name">Native name: %s</string>
 </resources>
