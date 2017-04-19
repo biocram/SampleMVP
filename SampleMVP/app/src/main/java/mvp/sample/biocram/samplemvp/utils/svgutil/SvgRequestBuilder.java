@@ -20,12 +20,8 @@ import mvp.sample.biocram.samplemvp.R;
 
 public class SvgRequestBuilder {
 
-    private GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable> mRequestBuilder;
-
-    private static SvgRequestBuilder sInstance;
-
-    private SvgRequestBuilder(Context context) {
-        mRequestBuilder = Glide.with(context)
+    public static GenericRequestBuilder getSVGRequestBuilder(Context context) {
+        return Glide.with(context)
                 .using(Glide.buildStreamModelLoader(Uri.class, context), InputStream.class)
                 .from(Uri.class)
                 .as(SVG.class)
@@ -37,12 +33,5 @@ public class SvgRequestBuilder {
                 .error(R.drawable.ic_broken_image_black_24dp)
                 .animate(android.R.anim.fade_in)
                 .listener(new SvgSoftwareLayerSetter<Uri>());
-    }
-
-    public static GenericRequestBuilder getSVGRequestBuilder(Context context) {
-        if (sInstance == null) {
-            sInstance = new SvgRequestBuilder(context);
-        }
-        return sInstance.mRequestBuilder;
     }
 }

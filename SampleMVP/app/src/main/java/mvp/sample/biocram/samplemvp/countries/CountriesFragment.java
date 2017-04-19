@@ -56,7 +56,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     }
 
     private void initRecyclerView() {
-        mAdapter = new CountriesAdapter();
+        mAdapter = new CountriesAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }

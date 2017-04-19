@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.common.base.Preconditions;
 
@@ -17,7 +18,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.sample.biocram.samplemvp.R;
 import mvp.sample.biocram.samplemvp.data.model.Country;
-import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 
 /**
  * Created by biocram on 2017-04-19.
@@ -26,6 +26,8 @@ import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 public class CountryListItemView extends LinearLayout {
 
     private Country mCountry;
+
+    private GenericRequestBuilder mSvgRequestBuilder;
 
     @BindView(R.id.imageview_flag)
     ImageView mImageViewFlag;
@@ -76,10 +78,14 @@ public class CountryListItemView extends LinearLayout {
         mTextViewName.setText(mCountry.name);
         mTextViewCapital.setText(String.format(getContext().getString(R.string.capital), mCountry.capital));
         mTextViewNativeName.setText(String.format(getContext().getString(R.string.native_name), mCountry.nativeName));
-        SvgRequestBuilder.getSVGRequestBuilder(getContext())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        mSvgRequestBuilder
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 // SVG cannot be serialized so it's not worth to cache it
                 .load(Uri.parse(mCountry.flag))
                 .into(mImageViewFlag);
+    }
+
+    public void setSvgRequestBuilder(GenericRequestBuilder svgRequestBuilder) {
+        mSvgRequestBuilder = svgRequestBuilder;
     }
 }
