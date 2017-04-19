@@ -1,6 +1,7 @@
 package mvp.sample.biocram.samplemvp.countries;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -9,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.common.base.Preconditions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mvp.sample.biocram.samplemvp.R;
 import mvp.sample.biocram.samplemvp.data.model.Country;
+import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 
 /**
  * Created by biocram on 2017-04-19.
@@ -58,7 +61,7 @@ public class CountryListItemView extends LinearLayout {
         inflate(getContext(), R.layout.country_list_item, this);
 
         setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
 
         ButterKnife.bind(this);
     }
@@ -73,5 +76,10 @@ public class CountryListItemView extends LinearLayout {
         mTextViewName.setText(mCountry.name);
         mTextViewCapital.setText(mCountry.capital);
         mTextViewNativeName.setText(mCountry.nativeName);
+        SvgRequestBuilder.getSVGRequestBuilder(getContext())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                // SVG cannot be serialized so it's not worth to cache it
+                .load(Uri.parse(mCountry.flag))
+                .into(mImageViewFlag);
     }
 }
