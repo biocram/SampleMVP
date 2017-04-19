@@ -38,3 +38,11 @@
 # OKIO PROGUARD RULES
 # Retrofit uses okio under the hood, so add the rules also for it
 -dontwarn okio.**
+
+# GLIDE PROGUARD RULES
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
