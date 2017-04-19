@@ -1,4 +1,4 @@
-package mvp.sample.biocram.samplemvp.data;
+package mvp.sample.biocram.samplemvp.data.api;
 
 import mvp.sample.biocram.samplemvp.BuildConfig;
 import okhttp3.OkHttpClient;

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package mvp.sample.biocram.samplemvp.data;
+package mvp.sample.biocram.samplemvp.data.model;
 
 public final class Country {
 
-    private String id;
-
-    public String getId() {
-        return id;
-    }
+    public String flag;
+    public String name;
+    public String alpha2Code;
+    public String capital;
+    public String nativeName;
 }

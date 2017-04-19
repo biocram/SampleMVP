@@ -1,11 +1,11 @@
-package mvp.sample.biocram.samplemvp.data;
+package mvp.sample.biocram.samplemvp.data.api;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import mvp.sample.biocram.samplemvp.data.model.Country;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Service interface for our {@link API}
@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 public interface CountriesService {
 
     // https://restcountries.eu/rest/v2/all?fields=name;nativeName;alpha2Code;capital;flag
-    // Get the list of all countries, only retrieve some selected fields
+    // Get the list of all countries, only retrieve some selected fields for each country
     @GET("rest/v2/all?fields=name;nativeName;alpha2Code;capital;flag")
     Observable<List<Country>> getAllCountries();
 
