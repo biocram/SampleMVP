@@ -3,6 +3,7 @@ package mvp.sample.biocram.samplemvp.countries;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,15 @@ import com.google.common.base.Preconditions;
 import java.util.List;
 
 import mvp.sample.biocram.samplemvp.R;
-import mvp.sample.biocram.samplemvp.data.Country;
+import mvp.sample.biocram.samplemvp.data.model.Country;
 
 /**
  * Created by biocram on 2017-04-11.
  */
 
 public class CountriesFragment extends Fragment implements CountriesContract.View {
+
+    private static final String TAG = CountriesFragment.class.getSimpleName();
 
     private CountriesContract.Presenter mPresenter;
     private ICountries mActivity;
@@ -70,7 +73,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @Override
     public void showCountries(List<Country> countries) {
-
+        Log.d(TAG,"received countries from presenter");
     }
 
     @Override

@@ -11,8 +11,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import mvp.sample.biocram.samplemvp.data.API;
-import mvp.sample.biocram.samplemvp.data.Country;
+import mvp.sample.biocram.samplemvp.data.api.API;
+import mvp.sample.biocram.samplemvp.data.model.Country;
 
 /**
  * Created by biocram on 2017-04-11.
@@ -47,18 +47,18 @@ class CountriesPresenter implements CountriesContract.Presenter {
             if (mDisposable != null && !mDisposable.isDisposed())
                 mDisposable.dispose();
 
-            Disposable disposable = API.getService().getAllCountries()
-                    .observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread())
+            mDisposable = API.getService().getAllCountries()
+                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                     .subscribeWith(new DisposableObserver<List<Country>>() {
                         @Override
-                        public void onNext(List<Country> countries) {
+                        public void onNext(List<Country> response) {
                             // The view may not be able to handle UI updates anymore
                             if (!mView.isActive()) {
                                 Log.d(TAG, "View is not active, don't send data to it");
                                 return;
                             }
 
-                            processCountries(countries);
+                            processCountries(response);
                         }
 
                         @Override
@@ -72,8 +72,6 @@ class CountriesPresenter implements CountriesContract.Presenter {
                             mView.setLoadingIndicator(false);
                         }
                     });
-
-            mDisposable = disposable;
         }
     }
 
@@ -90,7 +88,7 @@ class CountriesPresenter implements CountriesContract.Presenter {
     @Override
     public void openCountryDetails(@NonNull Country requestedCountry) {
         Preconditions.checkNotNull(requestedCountry, "countryDetail can't be null!");
-        mView.showCountryDetailsUi(requestedCountry.getId());
+        mView.showCountryDetailsUi(requestedCountry.alpha2Code);
     }
 
     @Override

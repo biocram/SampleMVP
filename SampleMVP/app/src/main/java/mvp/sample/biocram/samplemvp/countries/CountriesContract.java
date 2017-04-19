@@ -22,7 +22,7 @@ import java.util.List;
 
 import mvp.sample.biocram.samplemvp.BasePresenter;
 import mvp.sample.biocram.samplemvp.BaseView;
-import mvp.sample.biocram.samplemvp.data.Country;
+import mvp.sample.biocram.samplemvp.data.model.Country;
 
 /**
  * This specifies the contract between the view and the presenter.

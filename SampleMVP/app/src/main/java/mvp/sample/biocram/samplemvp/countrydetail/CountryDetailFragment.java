@@ -2,7 +2,7 @@ package mvp.sample.biocram.samplemvp.countrydetail;
 
 import android.support.v4.app.Fragment;
 
-import mvp.sample.biocram.samplemvp.data.Country;
+import mvp.sample.biocram.samplemvp.data.model.Country;
 
 /**
  * Created by biocram on 2017-04-11.

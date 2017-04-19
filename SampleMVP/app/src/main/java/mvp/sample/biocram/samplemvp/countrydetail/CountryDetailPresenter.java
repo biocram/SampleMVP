@@ -6,7 +6,12 @@ package mvp.sample.biocram.samplemvp.countrydetail;
 
 public class CountryDetailPresenter implements CountryDetailContract.Presenter {
     @Override
-    public void start() {
+    public void subscribe() {
+
+    }
+
+    @Override
+    public void unsubscribe() {
 
     }
 
