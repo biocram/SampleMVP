@@ -3,7 +3,8 @@ package mvp.sample.biocram.samplemvp.countries;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.google.common.base.Preconditions;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import mvp.sample.biocram.samplemvp.R;
 import mvp.sample.biocram.samplemvp.data.model.Country;
 
@@ -26,19 +29,20 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     private CountriesContract.Presenter mPresenter;
     private ICountries mActivity;
 
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    private CountriesAdapter mAdapter;
+
     public static CountriesFragment newInstance() {
         return new CountriesFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.countries_fragment_layout, container, false);
+        final View root = inflater.inflate(R.layout.countries_fragment_layout, container, false);
+        ButterKnife.bind(this, root);
         return root;
     }
 
@@ -47,6 +51,14 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
         super.onActivityCreated(savedInstanceState);
         Preconditions.checkArgument(getActivity() instanceof ICountries, "Activity must implement ICountries interface");
         mActivity = (ICountries) getActivity();
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        mAdapter = new CountriesAdapter();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -73,7 +85,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @Override
     public void showCountries(List<Country> countries) {
-        Log.d(TAG,"received countries from presenter");
+        mAdapter.setCountries(countries);
     }
 
     @Override
