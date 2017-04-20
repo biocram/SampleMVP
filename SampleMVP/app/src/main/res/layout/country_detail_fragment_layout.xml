@@ -13,27 +13,6 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        // "topLevelDomain": [".co"],
-        // "callingCodes": ["57"],
-        // "altSpellings": ["CO", "Republic of Colombia", "República de Colombia"],
-        // "region":"Americas",
-        // "population":48759958,
-        // "timezones": ["UTC-05:00"],
-        // "borders": ["BRA", "ECU", "PAN", "PER", "VEN"],
-        // "currencies": [{
-        // "code":"COP",
-        // "name":"Colombian peso",
-        // "symbol":"$"
-        // }],
-        // "languages": [{
-        // "iso639_1":"es",
-        // "iso639_2":"spa",
-        // "name":"Spanish",
-        // "nativeName":"Español"
-        // }],
-        // },
-        // }
-
         <ImageView
             android:id="@+id/imageview_flag"
             android:layout_width="match_parent"
@@ -56,14 +35,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_title_color"
                     android:textSize="30sp"
                     tools:text="Colombia"/>
+
+                <TextView
+                    android:id="@+id/textview_alt_spellings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Alternative spellings: CO, Republic of Colombia, República de Colombia"/>
+
+                <TextView
+                    android:id="@+id/textview_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Region: Americas"/>
+
+                <TextView
+                    android:id="@+id/textview_borders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Borders: BRA, ECU, PAN, PER, VEN"/>
+
+                <TextView
+                    android:id="@+id/textview_population"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Population: 48759958"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorAccent"/>
 
                 <TextView
                     android:id="@+id/textview_toplevel_domain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     tools:text="Top level domain: .co"/>
 
                 <TextView
@@ -74,11 +88,12 @@
                     tools:text="Calling codes: 57"/>
 
                 <TextView
-                    android:id="@+id/textview_alt_spellings"
+                    android:id="@+id/textview_timezones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    tools:text="Alternative spellings: CO, Republic of Colombia, República de Colombia"/>
+                    tools:text="Timezones: UTC-05:00"/>
+
             </LinearLayout>
 
         </ScrollView>

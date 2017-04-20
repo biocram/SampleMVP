@@ -5,4 +5,8 @@
     <string name="top_level_domain">Top level domain: %s</string>
     <string name="alternative_spellings">Alternative spellings:\n%s</string>
     <string name="calling_codes">Calling codes: %s</string>
+    <string name="region">Region: %s</string>
+    <string name="borders">Borders: %s</string>
+    <string name="timezones">Timezones: %s</string>
+    <string name="population">Popiulation: %s</string>
 </resources>

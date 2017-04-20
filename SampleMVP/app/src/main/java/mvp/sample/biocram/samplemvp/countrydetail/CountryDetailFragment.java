@@ -51,6 +51,15 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
     TextView mTextViewCallingCodes;
     @BindView(R.id.textview_toplevel_domain)
     TextView mTextViewTopLevelDomain;
+    @BindView(R.id.textview_borders)
+    TextView mTextViewBorders;
+    @BindView(R.id.textview_population)
+    TextView mTextViewPopulation;
+    @BindView(R.id.textview_region)
+    TextView mTextViewRegion;
+    @BindView(R.id.textview_timezones)
+    TextView mTextViewTimezones;
+
 
     private GenericRequestBuilder mSvgReqBuilder;
 
@@ -124,6 +133,10 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
         mTextViewTopLevelDomain.setText(String.format(getContext().getString(R.string.top_level_domain), country.topLevelDomain));
         mTextViewAltSpellings.setText(String.format(getContext().getString(R.string.alternative_spellings), country.altSpellings));
         mTextViewCallingCodes.setText(String.format(getContext().getString(R.string.calling_codes), country.callingCodes));
+        mTextViewBorders.setText(String.format(getContext().getString(R.string.borders), country.borders));
+        mTextViewPopulation.setText(String.format(getContext().getString(R.string.population), country.population));
+        mTextViewRegion.setText(String.format(getContext().getString(R.string.region), country.region));
+        mTextViewTimezones.setText(String.format(getContext().getString(R.string.timezones), country.timezones));
         mSvgReqBuilder
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 // SVG cannot be serialized so it's not worth to cache it
