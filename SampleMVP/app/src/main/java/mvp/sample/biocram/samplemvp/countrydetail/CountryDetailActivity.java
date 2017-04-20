@@ -35,16 +35,16 @@ public class CountryDetailActivity extends AppCompatActivity {
         final String countryId = getIntent().getStringExtra(INTENT_COUNTRY_ID);
         Preconditions.checkArgument(TextUtils.isEmpty(countryId), "CountryId can't be null!");
 
-        CountryDetailContract.View view = setUpView(countryId);
-        setUpPresenter(view);
+        CountryDetailContract.View view = setUpView();
+        setUpPresenter(view, countryId);
     }
 
-    private CountryDetailContract.View setUpView(String countryId) {
+    private CountryDetailContract.View setUpView() {
         CountryDetailFragment countryDetailFragment =
                 (CountryDetailFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
         if (countryDetailFragment == null) {
             // Create the fragment
-            countryDetailFragment = CountryDetailFragment.newInstance(countryId);
+            countryDetailFragment = CountryDetailFragment.newInstance();
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), countryDetailFragment, R.id.contentFrame);
         }
@@ -52,7 +52,7 @@ public class CountryDetailActivity extends AppCompatActivity {
         return countryDetailFragment;
     }
 
-    private void setUpPresenter(CountryDetailContract.View view) {
-        new CountryDetailPresenter(view);
+    private void setUpPresenter(CountryDetailContract.View view, String countryId) {
+        new CountryDetailPresenter(view, countryId);
     }
 }

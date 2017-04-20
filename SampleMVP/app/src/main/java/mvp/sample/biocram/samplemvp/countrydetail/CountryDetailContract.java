@@ -23,7 +23,7 @@ import mvp.sample.biocram.samplemvp.data.model.Country;
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface CountryDetailContract {
+interface CountryDetailContract {
 
     interface View extends BaseView<Presenter> {
 
@@ -35,11 +35,16 @@ public interface CountryDetailContract {
 
         void showNoCountry();
 
+        boolean isActive();
+
+        void showNoDetailForCountry();
+
+        void setLoadingcountryDetailError();
     }
 
     interface Presenter extends BasePresenter {
 
-        void loadCountry(String countryId);
+        void loadCountry();
 
     }
 }
