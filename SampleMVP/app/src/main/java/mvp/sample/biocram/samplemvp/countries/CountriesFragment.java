@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.common.base.Preconditions;
 
@@ -31,6 +33,8 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progressbar)
+    ProgressBar mProgressBar;
 
     private CountriesAdapter mAdapter;
 
@@ -80,7 +84,8 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @Override
     public void setLoadingIndicator(boolean active) {
-
+        mProgressBar.setVisibility(active ? View.VISIBLE : View.GONE);
+        mRecyclerView.setVisibility(mProgressBar.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 
     @Override
@@ -95,12 +100,12 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
 
     @Override
     public void showLoadingCountriesError() {
-
+        Toast.makeText(getContext(), "Sorry, something went wrong...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showNoCountries() {
-
+        Toast.makeText(getContext(), "Sorry, there are no countries at the moment...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
