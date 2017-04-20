@@ -44,8 +44,6 @@ public class CountriesActivity extends AppCompatActivity implements ICountries {
 
     @Override
     public void showCountryDetail(String countryID) {
-        // TODO: 2017-04-12 decide to launch a new activity or use a new fragment, based on tablet or phone version
-        // for now just launc a new activity
         Intent intent = CountryDetailActivity.createIntent(this, countryID);
         startActivity(intent);
     }
