@@ -31,15 +31,11 @@ interface CountryDetailContract {
 
         void showCountry(Country country);
 
-        void showLoadingCountryError();
-
-        void showNoCountry();
-
         boolean isActive();
 
         void showNoDetailForCountry();
 
-        void setLoadingcountryDetailError();
+        void setLoadingCountryDetailError();
     }
 
     interface Presenter extends BasePresenter {

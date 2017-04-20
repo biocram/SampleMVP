@@ -2,4 +2,7 @@
     <string name="app_name">SampleMVP</string>
     <string name="capital">Capital: %s</string>
     <string name="native_name">Native name: %s</string>
+    <string name="top_level_domain">Top level domain: %s</string>
+    <string name="alternative_spellings">Alternative spellings:\n%s</string>
+    <string name="calling_codes">Calling codes: %s</string>
 </resources>

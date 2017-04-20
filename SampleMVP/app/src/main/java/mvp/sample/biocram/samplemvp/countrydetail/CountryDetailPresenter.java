@@ -28,7 +28,7 @@ public class CountryDetailPresenter implements CountryDetailContract.Presenter {
 
     CountryDetailPresenter(@NonNull CountryDetailContract.View view, @NonNull String countryId) {
         Preconditions.checkNotNull(view, "countryDetailView can't be null!");
-        Preconditions.checkArgument(TextUtils.isEmpty(countryId), "CountryId can't be null or empty!");
+        Preconditions.checkArgument(!TextUtils.isEmpty(countryId), "CountryId can't be null or empty!");
         mView = view;
         mView.setPresenter(this);
         mCountryId = countryId;
@@ -71,7 +71,7 @@ public class CountryDetailPresenter implements CountryDetailContract.Presenter {
                     public void onError(Throwable e) {
                         Log.e(TAG, "Error retrieving list of countries", e);
                         mView.setLoadingIndicator(false);
-                        mView.setLoadingcountryDetailError();
+                        mView.setLoadingCountryDetailError();
                     }
 
                     @Override

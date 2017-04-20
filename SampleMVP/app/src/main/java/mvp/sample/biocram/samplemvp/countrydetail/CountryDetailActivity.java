@@ -33,7 +33,7 @@ public class CountryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.country_detail_layout);
 
         final String countryId = getIntent().getStringExtra(INTENT_COUNTRY_ID);
-        Preconditions.checkArgument(TextUtils.isEmpty(countryId), "CountryId can't be null!");
+        Preconditions.checkArgument(!TextUtils.isEmpty(countryId), "CountryId can't be null!");
 
         CountryDetailContract.View view = setUpView();
         setUpPresenter(view, countryId);

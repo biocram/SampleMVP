@@ -16,11 +16,22 @@
 
 package mvp.sample.biocram.samplemvp.data.model;
 
+import java.util.List;
+
 public final class Country {
 
+    public List<String> topLevelDomain;
+    public List<String> callingCodes;
+    public List<String> altSpellings;
+    public String region;
+    public String population;
+    public List<String> timezones;
+    public List<String> borders;
     public String flag;
     public String name;
     public String alpha2Code;
     public String capital;
     public String nativeName;
+//    public List<Currency> currencies;
+//    public List<Language> languages;
 }

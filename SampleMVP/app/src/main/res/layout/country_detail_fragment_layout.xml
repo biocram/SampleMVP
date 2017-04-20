@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        // "topLevelDomain": [".co"],
+        // "callingCodes": ["57"],
+        // "altSpellings": ["CO", "Republic of Colombia", "República de Colombia"],
+        // "region":"Americas",
+        // "population":48759958,
+        // "timezones": ["UTC-05:00"],
+        // "borders": ["BRA", "ECU", "PAN", "PER", "VEN"],
+        // "currencies": [{
+        // "code":"COP",
+        // "name":"Colombian peso",
+        // "symbol":"$"
+        // }],
+        // "languages": [{
+        // "iso639_1":"es",
+        // "iso639_2":"spa",
+        // "name":"Spanish",
+        // "nativeName":"Español"
+        // }],
+        // },
+        // }
+
+        <ImageView
+            android:id="@+id/imageview_flag"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            tools:background="@color/colorAccent"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="30sp"
+                    tools:text="Colombia"/>
+
+                <TextView
+                    android:id="@+id/textview_toplevel_domain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="Top level domain: .co"/>
+
+                <TextView
+                    android:id="@+id/textview_calling_codes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Calling codes: 57"/>
+
+                <TextView
+                    android:id="@+id/textview_alt_spellings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Alternative spellings: CO, Republic of Colombia, República de Colombia"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</LinearLayout>
