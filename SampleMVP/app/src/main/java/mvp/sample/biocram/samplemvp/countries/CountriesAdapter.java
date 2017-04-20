@@ -14,17 +14,25 @@ import java.util.List;
 import mvp.sample.biocram.samplemvp.data.model.Country;
 import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by biocram on 2017-04-19.
  */
 
 class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryViewHolder> {
 
+    interface OnCountryClickListener {
+        void onCountryClick(Country country);
+    }
+
+    private OnCountryClickListener mListener;
     private List<Country> mCountries = new ArrayList<>();
 
     private final GenericRequestBuilder mSvgRequestBuilder;
 
-    public CountriesAdapter(Context context) {
+    CountriesAdapter(@NonNull Context context, @NonNull OnCountryClickListener listener) {
+        mListener = Preconditions.checkNotNull(listener, "OnCountryClickListener can't be null!");
         mSvgRequestBuilder = SvgRequestBuilder.getSVGRequestBuilder(context);
     }
 
@@ -39,7 +47,7 @@ class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryView
     }
 
     public void setCountries(@NonNull List<Country> countries) {
-        Preconditions.checkNotNull(countries, "Countries can't be null");
+        checkNotNull(countries, "Countries can't be null");
         mCountries.clear();
         mCountries.addAll(countries);
         notifyDataSetChanged();
@@ -56,6 +64,7 @@ class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryView
     public void onBindViewHolder(CountryViewHolder holder, int position) {
         final Country country = mCountries.get(position);
         holder.countryView.setCountry(country);
+        holder.countryView.setOnClickListener(v -> mListener.onCountryClick(country));
     }
 
     @Override

@@ -24,7 +24,7 @@ import mvp.sample.biocram.samplemvp.data.model.Country;
  * Created by biocram on 2017-04-11.
  */
 
-public class CountriesFragment extends Fragment implements CountriesContract.View {
+public class CountriesFragment extends Fragment implements CountriesContract.View, CountriesAdapter.OnCountryClickListener {
 
     private static final String TAG = CountriesFragment.class.getSimpleName();
 
@@ -60,7 +60,7 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     }
 
     private void initRecyclerView() {
-        mAdapter = new CountriesAdapter(getContext());
+        mAdapter = new CountriesAdapter(getContext(), this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -111,5 +111,10 @@ public class CountriesFragment extends Fragment implements CountriesContract.Vie
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    @Override
+    public void onCountryClick(Country country) {
+        mPresenter.openCountryDetails(country);
     }
 }

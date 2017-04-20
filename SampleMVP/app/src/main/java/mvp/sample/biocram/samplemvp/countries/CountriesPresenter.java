@@ -65,6 +65,7 @@ class CountriesPresenter implements CountriesContract.Presenter {
                         public void onError(Throwable e) {
                             Log.e(TAG, "Error retrieving list of countries", e);
                             mView.setLoadingIndicator(false);
+                            mView.showLoadingCountriesError();
                         }
 
                         @Override
@@ -86,9 +87,9 @@ class CountriesPresenter implements CountriesContract.Presenter {
     }
 
     @Override
-    public void openCountryDetails(@NonNull Country requestedCountry) {
-        Preconditions.checkNotNull(requestedCountry, "countryDetail can't be null!");
-        mView.showCountryDetailsUi(requestedCountry.alpha2Code);
+    public void openCountryDetails(@NonNull Country selectedCountry) {
+        Preconditions.checkNotNull(selectedCountry, "selectedCountry can't be null!");
+        mView.showCountryDetailsUi(selectedCountry.alpha2Code);
     }
 
     @Override
