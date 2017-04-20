@@ -23,6 +23,8 @@ import mvp.sample.biocram.samplemvp.R;
 import mvp.sample.biocram.samplemvp.data.model.Country;
 import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by biocram on 2017-04-11.
  */
@@ -30,6 +32,8 @@ import mvp.sample.biocram.samplemvp.utils.svgutil.SvgRequestBuilder;
 public class CountryDetailFragment extends Fragment implements CountryDetailContract.View {
 
     private static final String TAG = CountryDetailFragment.class.getSimpleName();
+
+    private static final String SAVE_STATE_COUNTRY = "save_state_country";
 
     private CountryDetailContract.Presenter mPresenter;
 
@@ -50,6 +54,8 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
 
     private GenericRequestBuilder mSvgReqBuilder;
 
+    private Country mCountry;
+
 
     public static CountryDetailFragment newInstance() {
         return new CountryDetailFragment();
@@ -59,13 +65,18 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSvgReqBuilder = SvgRequestBuilder.getSVGRequestBuilder(getContext());
-        // TODO: 2017-04-20 restore state
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(SAVE_STATE_COUNTRY))
+                mCountry = (Country) savedInstanceState.getSerializable(SAVE_STATE_COUNTRY);
+        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // TODO: 2017-04-20 save state
+        if (mCountry != null)
+            outState.putSerializable(SAVE_STATE_COUNTRY, mCountry);
     }
 
     @Nullable
@@ -79,7 +90,11 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.subscribe();
+        if (mCountry == null) mPresenter.subscribe();
+        else {
+            setLoadingIndicator(false);
+            showCountry(mCountry);
+        }
     }
 
     @Override
@@ -90,7 +105,7 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
 
     @Override
     public void setPresenter(CountryDetailContract.Presenter presenter) {
-        mPresenter = Preconditions.checkNotNull(presenter, "countryDetailPresenter can't be null");
+        mPresenter = checkNotNull(presenter, "countryDetailPresenter can't be null");
     }
 
     @Override
@@ -102,6 +117,9 @@ public class CountryDetailFragment extends Fragment implements CountryDetailCont
     @Override
     public void showCountry(Country country) {
         Log.d(TAG, "Received country detail data");
+
+        mCountry = Preconditions.checkNotNull(country, "Country can't be null!");
+
         mTextViewName.setText(country.name);
         mTextViewTopLevelDomain.setText(String.format(getContext().getString(R.string.top_level_domain), country.topLevelDomain));
         mTextViewAltSpellings.setText(String.format(getContext().getString(R.string.alternative_spellings), country.altSpellings));

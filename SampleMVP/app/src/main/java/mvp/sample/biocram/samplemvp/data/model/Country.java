@@ -16,9 +16,10 @@
 
 package mvp.sample.biocram.samplemvp.data.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public final class Country {
+public final class Country implements Serializable{
 
     public List<String> topLevelDomain;
     public List<String> callingCodes;
