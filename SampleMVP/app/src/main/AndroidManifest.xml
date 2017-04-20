@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".countrydetail.CountryDetailActivity"/>
+        <activity
+            android:name=".countrydetail.CountryDetailActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
 
     </application>
 
